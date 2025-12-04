@@ -1,0 +1,63 @@
+<nav class="w-full h-full bg-slate-900 text-white p-6 flex flex-col gap-4">
+  <!-- Header -->
+  <div class="mb-4">
+    <h2 class="text-2xl font-bold text-blue-400">Menu</h2>
+  </div>
+
+  <!-- Navigation Items -->
+  <a [routerLink]="'/employees'"
+  [routerLinkActive]="'bg-blue-600 hover:bg-blue-700 font-bold'"
+  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 font-semibold [&:not(.bg-blue-600)]:hover:bg-slate-800">
+    <span class="text-lg">🏠</span>
+    <span>Empleados</span>
+  </a>
+
+  <a [routerLink]=""
+  [routerLinkActive]="'bg-blue-600 hover:bg-blue-700 font-bold'"
+  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 font-medium [&:not(.bg-blue-600)]:hover:bg-slate-800">
+    <span class="text-lg">📊</span>
+    <span>Productos</span>
+  </a>
+
+  <a [routerLink]=""
+  [routerLinkActive]="'bg-blue-600 hover:bg-blue-700 font-bold'"
+  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 font-medium [&:not(.bg-blue-600)]:hover:bg-slate-800">
+    <span class="text-lg">👥</span>
+    <span>Clientes</span>
+  </a>
+
+  <a [routerLink]=""
+  [routerLinkActive]="'bg-blue-600 hover:bg-blue-700 font-bold'"
+  class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 font-medium [&:not(.bg-blue-600)]:hover:bg-slate-800">
+    <span class="text-lg">⚙️</span>
+    <span>Validación</span>
+  </a>
+
+  <!-- Raíz con submenu -->
+  <div>
+    <a
+      (click)="toggleRaiz()"
+    [routerLinkActive]="'bg-blue-600 hover:bg-blue-700 font-bold'"
+      class="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-colors duration-200 font-medium [&:not(.bg-blue-600)]:hover:bg-slate-800">
+      <div class="flex items-center gap-3">
+        <span class="text-lg">ℹ️</span>
+        <span>Raíz</span>
+      </div>
+      <span class="text-sm" [class.rotate-180]="isRaizOpen()">▼</span>
+    </a>
+
+    <!-- Submenu items -->
+     @if (isRaizOpen()) {
+        <div class="ml-4 mt-2 flex flex-col gap-2">
+      <a [routerLink]="" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors duration-200 text-sm font-medium">
+        <span class="text-lg">📄</span>
+        <span>Opción 1</span>
+      </a>
+      <a [routerLink]="" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors duration-200 text-sm font-medium">
+        <span class="text-lg">📋</span>
+        <span>Opción 2</span>
+      </a>
+    </div>
+     }
+  </div>
+</nav>
