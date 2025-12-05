@@ -3,6 +3,7 @@ import { Layout } from './layout/layout';
 import { Employees } from '../views/employees/employees';
 import { EmployeesDetails } from '../views/employees-details/employees-details';
 import { Products } from '../views/products/products';
+import { Clients } from "../views/clients/clients";
 
 
 export const homeRoute: Routes = [
@@ -25,6 +26,10 @@ export const homeRoute: Routes = [
       {
         path: 'products',
         component: Products,
+      },
+      {
+        path: 'clients',
+        component: Clients,
       },
       {
         path: '**',

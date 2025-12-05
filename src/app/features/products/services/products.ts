@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  private readonly url = `${enviroment.API_BASE}`;
+  private readonly url = `${enviroment.API_BASE_PRODUCTS}`;
   private http = inject(HttpClient);
   readonly products: WritableSignal<ResponseProducts[] | null> = signal<
     ResponseProducts[] | null

@@ -1,0 +1,25 @@
+{
+  "clients": [
+    {
+      "id": "bf3ac880-82dd-4253-81ca-c3d17ce7b943",
+      "nit": "900123456-7",
+      "name": "Alejandro Dominguez",
+      "address": "Calle 45 #12-34, Bogotá",
+      "phone": "+57 300 123 4567"
+    },
+    {
+      "id": "06bbd257-cc04-4227-8965-4913a72c95b1",
+      "nit": "800765432-1",
+      "name": "Alexa Meriño",
+      "address": "Carrera 10 #5-67, Medellín",
+      "phone": "+57 311 765 4321"
+    },
+    {
+      "id": "6cf957e1-e002-4116-ba8a-438abec75b75",
+      "nit": "5412312-4",
+      "name": "Daniel Pertuz",
+      "address": "Calle 100 # 10-65, Popayán",
+      "phone": "+57 3014588924"
+    }
+  ]
+}
