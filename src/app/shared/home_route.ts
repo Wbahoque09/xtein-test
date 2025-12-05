@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { Layout } from './layout/layout';
 import { Employees } from '../views/employees/employees';
 import { EmployeesDetails } from '../views/employees-details/employees-details';
+import { Products } from '../views/products/products';
 
 
 export const homeRoute: Routes = [
@@ -20,6 +21,10 @@ export const homeRoute: Routes = [
             pathMatch: 'full',
           },
         ],
+      },
+      {
+        path: 'products',
+        component: Products,
       },
       {
         path: '**',

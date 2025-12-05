@@ -1,0 +1,96 @@
+<div class="flex flex-col h-svh w-full bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 shadow-2xl overflow-hidden">
+  @if (data() && data()!.length > 0) {
+    <!-- Tabla -->
+    <div class="flex-1 overflow-y-auto overflow-x-auto">
+      <table class="w-full border-collapse bg-transparent">
+        <thead class="sticky top-0 bg-linear-to-r from-slate-950 to-slate-900 z-10">
+          <tr>
+            <th class="px-6 py-4 text-left font-bold text-blue-400 border-b-2 border-blue-500 text-xs uppercase tracking-wider">ID</th>
+            <th class="px-6 py-4 text-left font-bold text-blue-400 border-b-2 border-blue-500 text-xs uppercase tracking-wider">Título</th>
+            <th class="px-6 py-4 text-left font-bold text-blue-400 border-b-2 border-blue-500 text-xs uppercase tracking-wider">Precio</th>
+            <th class="px-6 py-4 text-left font-bold text-blue-400 border-b-2 border-blue-500 text-xs uppercase tracking-wider">Categoría</th>
+            <th class="px-6 py-4 text-left font-bold text-blue-400 border-b-2 border-blue-500 text-xs uppercase tracking-wider">Descripción</th>
+            <th class="px-6 py-4 text-left font-bold text-blue-400 border-b-2 border-blue-500 text-xs uppercase tracking-wider">Calificación</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of paginatedData; track product.id) {
+            <tr class="border-b border-slate-700 hover:bg-blue-500 hover:bg-opacity-10 transition-all duration-200 transform hover:translate-x-1">
+              <td class="px-6 py-4 text-blue-400 font-semibold text-sm min-w-fit">{{ product.id }}</td>
+              <td class="px-6 py-4 text-slate-100 font-medium text-sm max-w-xs truncate">{{ truncateText(product.title, 50) }}</td>
+              <td class="px-6 py-4 text-green-400 font-bold text-sm min-w-fit">${{ product.price.toFixed(2) }}</td>
+              <td class="px-6 py-4">
+                <span class="inline-block px-3 py-1 text-xs font-semibold text-purple-300 bg-purple-900 bg-opacity-40 rounded-full border border-purple-500 border-opacity-30">
+                  {{ product.category }}
+                </span>
+              </td>
+              <td class="px-6 py-4 text-slate-300 text-sm max-w-sm line-clamp-2">{{ truncateText(product.description, 100) }}</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <span class="text-yellow-400 text-sm font-semibold tracking-wider">
+                    @for (star of getStarRating(product.rating.rate); track $index) {
+                      {{ star }}
+                    }
+                  </span>
+                  <span class="text-slate-400 text-xs">({{ product.rating.count }})</span>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Paginación -->
+    <div class="flex flex-wrap justify-center items-center gap-3 p-4 bg-linear-to-r from-slate-950 to-slate-900 border-t border-slate-700">
+      <button
+        (click)="changePage(1)"
+        [disabled]="currentPage() === 1"
+        type="button"
+        class="px-3 py-2 bg-slate-800 text-blue-400 border border-blue-500 rounded-lg font-semibold text-sm hover:bg-blue-500 hover:text-white transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed">
+        ⟨⟨
+      </button>
+      <button
+        (click)="changePage(currentPage() - 1)"
+        [disabled]="currentPage() === 1"
+        type="button"
+        class="px-3 py-2 bg-slate-800 text-blue-400 border border-blue-500 rounded-lg font-semibold text-sm hover:bg-blue-500 hover:text-white transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed">
+        ⟨
+      </button>
+
+      @for (page of pageNumbers; track page) {
+        <button
+          (click)="changePage(page)"
+          class="hover:cursor-pointer"
+          [class]="currentPage() === page ? 'px-3 py-2 bg-blue-500 text-white border border-blue-400 rounded-lg font-bold text-sm transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg' : 'px-3 py-2 bg-slate-800 text-blue-400 border border-blue-500 rounded-lg font-semibold text-sm hover:bg-blue-500 hover:text-white transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg'"
+          type="button">
+          {{ page }}
+        </button>
+      }
+
+      <button
+        (click)="changePage(currentPage() + 1)"
+        [disabled]="currentPage() === totalPages"
+        type="button"
+        class="px-3 py-2 bg-slate-800 text-blue-400 border border-blue-500 rounded-lg font-semibold text-sm hover:bg-blue-500 hover:text-white transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed">
+        ⟩
+      </button>
+      <button
+        (click)="changePage(totalPages)"
+        [disabled]="currentPage() === totalPages"
+        type="button"
+        class="px-3 py-2 bg-slate-800 text-blue-400 border border-blue-500 rounded-lg font-semibold text-sm hover:bg-blue-500 hover:text-white transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-40 cursor-pointer disabled:cursor-not-allowed">
+        ⟩⟩
+      </button>
+
+      <span class="text-slate-400 text-xs min-w-fit font-medium">
+        Página {{ currentPage() }} de {{ totalPages }}
+      </span>
+    </div>
+  } @else {
+    <div class="flex justify-center items-center h-full w-full text-slate-500 text-lg font-medium">
+      <p>No hay productos disponibles</p>
+    </div>
+  }
+</div>
+
