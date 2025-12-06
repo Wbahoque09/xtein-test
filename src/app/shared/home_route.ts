@@ -6,6 +6,8 @@ import { Products } from '../views/products/products';
 import { Clients } from '../views/clients/clients';
 import { InputValidatorsView } from '../views/input-validators-view/input-validators-view';
 import { DataPublicViews } from '../views/data-public-views/data-public-views';
+import { ComponentOne } from '../features/root-math/components/component-one/component-one';
+import { ComponentSecond } from '../features/root-math/components/component-second/component-second';
 
 
 export const homeRoute: Routes = [
@@ -40,6 +42,24 @@ export const homeRoute: Routes = [
       {
         path: 'data-public',
         component: DataPublicViews
+      },
+      {
+        path: 'root-math',
+        children: [
+          {
+            path: 'component-one',
+            component: ComponentOne,
+          },
+          {
+            path: 'component-two',
+            component: ComponentSecond,
+          },
+          {
+            path: '**',
+            redirectTo: 'component-one',
+            pathMatch: 'full',
+          },
+        ],
       },
       {
         path: '**',

@@ -8,35 +8,35 @@
   <a [routerLink]="'/employees'"
   [routerLinkActive]="'bg-blue-600 hover:bg-blue-700 font-bold'"
   class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 font-semibold [&:not(.bg-blue-600)]:hover:bg-slate-800 hover:cursor-pointer">
-    <span class="text-lg">🏠</span>
+    <span class=""><img src="assets/employee.svg" alt="icon-employee" class="w-6 h-6"></span>
     <span>Empleados</span>
   </a>
 
   <a [routerLink]="'/products'"
   [routerLinkActive]="'bg-blue-600 hover:bg-blue-700 font-bold'"
   class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 font-medium [&:not(.bg-blue-600)]:hover:bg-slate-800 hover:cursor-pointer">
-    <span class="text-lg">📊</span>
+    <span class=""><img src="assets/products.svg" alt="icon-products" class="w-6 h-6"></span>
     <span>Productos</span>
   </a>
 
   <a [routerLink]="'/clients'"
   [routerLinkActive]="'bg-blue-600 hover:bg-blue-700 font-bold'"
   class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 font-medium [&:not(.bg-blue-600)]:hover:bg-slate-800 hover:cursor-pointer">
-    <span class="text-lg">👥</span>
+    <span class=""><img src="assets/business.svg" alt="icon-clients" class="w-6 h-6"></span>
     <span>Clientes</span>
   </a>
 
   <a [routerLink]="'/validations'"
   [routerLinkActive]="'bg-blue-600 hover:bg-blue-700 font-bold'"
   class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 font-medium [&:not(.bg-blue-600)]:hover:bg-slate-800 hover:cursor-pointer">
-    <span class="text-lg">⚙️</span>
+    <span class=""><img src="assets/validators.svg" alt="icon-validators" class="w-6 h-6"></span>
     <span>Validación</span>
   </a>
 
   <a [routerLink]="'/data-public'"
   [routerLinkActive]="'bg-blue-600 hover:bg-blue-700 font-bold'"
   class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 font-medium [&:not(.bg-blue-600)]:hover:bg-slate-800 hover:cursor-pointer">
-    <span class="text-lg">⚙️</span>
+    <span class=""><img src="assets/data.svg" alt="icon-data" class="w-6 h-6"></span>
     <span>Data Pública</span>
   </a>
 
@@ -44,10 +44,11 @@
   <div>
     <a
       (click)="toggleRaiz()"
+      [routerLink]="'/root-math'"
     [routerLinkActive]="'bg-blue-600 hover:bg-blue-700 font-bold'"
       class="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-colors duration-200 font-medium [&:not(.bg-blue-600)]:hover:bg-slate-800 hover:cursor-pointer">
       <div class="flex items-center gap-3">
-        <span class="text-lg">ℹ️</span>
+        <span class=""><img src="assets/calculator.svg" alt="icon-root" class="w-6 h-6"></span>
         <span>Raíz</span>
       </div>
       <span class="text-sm" [class.rotate-180]="isRaizOpen()">▼</span>
@@ -55,14 +56,24 @@
 
     <!-- Submenu items -->
      @if (isRaizOpen()) {
-        <div class="ml-4 mt-2 flex flex-col gap-2">
-      <a [routerLink]="" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors duration-200 text-sm font-medium hover:cursor-pointer">
-        <span class="text-lg">📄</span>
-        <span>Opción 1</span>
+        <div class="ml-2 mt-2 flex flex-col gap-2">
+      <a [routerLink]="'root-math/component-one'" 
+      (click)="animatedComponent(true)"  
+      class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors duration-200 text-sm font-medium hover:cursor-pointer">
+        <span 
+          [ngClass]="isanimated() ? 'flex':'hidden'"
+          class="rounded-full w-2 h-2 animate-pulse bg-blue-700">
+        </span>
+        <span>Componente 1</span>
       </a>
-      <a [routerLink]="" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors duration-200 text-sm font-medium hover:cursor-pointer">
-        <span class="text-lg">📋</span>
-        <span>Opción 2</span>
+      <a [routerLink]="'root-math/component-two'" 
+      (click)="animatedComponent(false)" 
+      class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors duration-200 text-sm font-medium hover:cursor-pointer">
+        <span 
+          [ngClass]="!isanimated() ? 'flex':'hidden'"
+          class="rounded-full w-2 h-2 animate-pulse bg-blue-700">
+        </span>
+        <span>Componente 2</span>
       </a>
     </div>
      }

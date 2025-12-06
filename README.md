@@ -2,6 +2,14 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.1.
 
+## 3 Punto de la prueba
+
+Para que el tercer punto de la prueba funcione debe correr en una terminal aparte de la que levanta la aplicación de angular este comando
+
+```bash
+json-server --watch db.json
+```
+
 ## Development server
 
 To start a local development server, run:
@@ -57,3 +65,4 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+

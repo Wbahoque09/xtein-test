@@ -10,8 +10,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class Sidebard {
   isRaizOpen = signal(false);
+  isanimated = signal(false);
 
   toggleRaiz() {
     this.isRaizOpen.update((current) => !current);
+    this.isanimated.set(true);
+  }
+
+  animatedComponent(boolean: boolean): void {
+    this.isanimated.set(boolean);
   }
 }
