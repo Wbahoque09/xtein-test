@@ -4,6 +4,7 @@ import { Employees } from '../views/employees/employees';
 import { EmployeesDetails } from '../views/employees-details/employees-details';
 import { Products } from '../views/products/products';
 import { Clients } from "../views/clients/clients";
+import { InputValidatorsView } from "../views/input-validators-view/input-validators-view";
 
 
 export const homeRoute: Routes = [
@@ -30,6 +31,10 @@ export const homeRoute: Routes = [
       {
         path: 'clients',
         component: Clients,
+      },
+      {
+        path: 'validations',
+        component: InputValidatorsView
       },
       {
         path: '**',
