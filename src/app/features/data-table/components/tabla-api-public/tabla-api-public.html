@@ -1,0 +1,76 @@
+<div class="flex flex-col h-full w-full overflow-y-auto shadow-lg">
+	@if (data() && data()!.length > 0) {
+		<div class="flex-1 overflow-auto">
+			<table class="w-full table-fixed border-collapse">
+				<thead class="sticky top-0 bg-linear-to-r from-slate-950 to-slate-900 z-10">
+					<tr>
+						<th class="px-6 py-3 text-left text-blue-400 font-semibold text-sm uppercase tracking-wide">Value</th>
+						<th class="px-6 py-3 text-left text-blue-400 font-semibold text-sm uppercase tracking-wide">Text</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (item of paginatedData; track item.Value) {
+						<tr class="border-b border-slate-700 hover:bg-blue-500 hover:bg-opacity-5 transition-colors duration-150">
+							<td class="px-6 py-3 text-slate-100 text-sm align-middle">{{ item.Value }}</td>
+							<td class="px-6 py-3 text-slate-200 text-sm align-middle">{{ truncate(item.Text, 120) }}</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Pagination -->
+		<div class="flex items-center justify-center gap-3 p-4 bg-linear-to-r from-slate-950 to-slate-900 border-t border-slate-700">
+			<button
+				(click)="changePage(1)"
+				[disabled]="currentPage() === 1"
+				type="button"
+				class="px-3 py-2 bg-slate-800 text-blue-400 border border-blue-500 rounded-lg font-semibold text-sm hover:bg-blue-500 hover:text-white transition disabled:opacity-40 hover:cursor-pointer disabled:cursor-not-allowed"
+			>
+				⟨⟨
+			</button>
+
+			<button
+				(click)="changePage(currentPage() - 1)"
+				[disabled]="currentPage() === 1"
+				type="button"
+				class="px-3 py-2 bg-slate-800 text-blue-400 border border-blue-500 rounded-lg font-semibold text-sm hover:bg-blue-500 hover:text-white transition disabled:opacity-40 hover:cursor-pointer disabled:cursor-not-allowed"
+			>
+				⟨
+			</button>
+
+			@for (p of pageNumbers; track p) {
+				<button
+					(click)="changePage(p)"
+					type="button"
+                    class="hover:cursor-pointer"
+					[class]="currentPage() === p ? 'px-3 py-2 bg-blue-500 text-white border border-blue-400 rounded-lg font-bold text-sm' : 'px-3 py-2 bg-slate-800 text-blue-400 border border-blue-500 rounded-lg font-semibold text-sm hover:bg-blue-500 hover:text-white'"
+				>
+					{{ p }}
+				</button>
+			}
+
+			<button
+				(click)="changePage(currentPage() + 1)"
+				[disabled]="currentPage() === totalPages"
+				type="button"
+				class="px-3 py-2 bg-slate-800 text-blue-400 border border-blue-500 rounded-lg font-semibold text-sm hover:bg-blue-500 hover:text-white transition disabled:opacity-40 hover:cursor-pointer disabled:cursor-not-allowed"
+			>
+				⟩
+			</button>
+
+			<button
+				(click)="changePage(totalPages)"
+				[disabled]="currentPage() === totalPages"
+				type="button"
+				class="px-3 py-2 bg-slate-800 text-blue-400 border border-blue-500 rounded-lg font-semibold text-sm hover:bg-blue-500 hover:text-white transition disabled:opacity-40 hover:cursor-pointer disabled:cursor-not-allowed"
+			>
+				⟩⟩
+			</button>
+
+			<span class="text-slate-400 text-xs">Página {{ currentPage() }} de {{ totalPages }}</span>
+		</div>
+	} @else {
+		<div class="flex-1 flex items-center justify-center text-slate-400 text-lg">No hay datos disponibles</div>
+	}
+</div>
